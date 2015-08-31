@@ -5,7 +5,7 @@ Both presets and categories can be created and configured using the addon prefer
 
 Currently you can use the current filters:
 - Name-based filtering (search in the entire name, the prefix or suffix)
-- Object type filtering (currently All, Armature or Mesh, will be adding more soon).
+- Object type filtering (all object typees available).
 
 You can then control the visibility of all objects that meet the category criteria using the following shading modes:
 - Solid
