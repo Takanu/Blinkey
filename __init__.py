@@ -83,7 +83,16 @@ class BL_VisibilityCategory(PropertyGroup):
         items=(
             ('1', 'All', 'Applies to all object types.'),
             ('2', 'Mesh', 'Applies to mesh object types only.'),
-            ('3', 'Armature', 'Applies to armature object types only.'),
+            ('3', 'Curve', 'Applies to curve object types only.'),
+            ('4', 'Surface', 'Applies to surface object types only.'),
+            ('5', 'Meta', 'Applies to meta object types only.'),
+            ('6', 'Font', 'Applies to font object types only.'),
+            ('7', 'Armature', 'Applies to armature object types only.'),
+            ('8', 'Lattice', 'Applies to lattice object types only.'),
+            ('9', 'Empty', 'Applies to empty object types only.'),
+            ('10', 'Camera', 'Applies to camera object types only.'),
+            ('11', 'Lamp', 'Applies to lamp object types only.'),
+            ('12', 'Speaker', 'Applies to speaker object types only.')
             ),
         default='1'
     )

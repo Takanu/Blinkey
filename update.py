@@ -64,28 +64,49 @@ def Update_VisibilityCategory(self, context):
             nameFilterList.append(object)
 
     print("Current object list...", len(nameFilterList))
-    print(">>> Checking Type Filter <<<")
+    print("Checking Type Filter.....", category.object_type)
 
-    if category.object_type is '2':
+    typeFilter = 'NONE'
+
+    if category.object_type == '1':
+        typeFilter = 'NONE'
+    elif category.object_type == '2':
+        typeFilter = 'MESH'
+    elif category.object_type == '3':
+        typeFilter = 'CURVE'
+    elif category.object_type == '4':
+        typeFilter = 'SURFACE'
+    elif category.object_type == '5':
+        typeFilter = 'META'
+    elif category.object_type == '6':
+        typeFilter = 'FONT'
+    elif category.object_type == '7':
+        typeFilter = 'ARMATURE'
+    elif category.object_type == '8':
+        typeFilter = 'LATTICE'
+    elif category.object_type == '9':
+        typeFilter = 'EMPTY'
+    elif category.object_type == '10':
+        typeFilter = 'CAMERA'
+    elif category.object_type == '11':
+        typeFilter = 'LAMP'
+    elif category.object_type == '12':
+        typeFilter = 'SPEAKER'
+
+    print("Type Filter Found...", typeFilter)
+
+    if typeFilter == 'NONE':
         for object in nameFilterList:
             print("Checking object...", object.name)
-            if object.type == 'MESH':
-                print("Object matches type filter")
-                typeFilterList.append(object)
-
-    elif category.object_type is '3':
-        for object in nameFilterList:
-            print("Checking object...", object.name)
-            if object.type == 'ARMATURE':
-                print("Object matches type filter")
-                typeFilterList.append(object)
-
-    else:
-        for object in nameFilterList:
             print("Object matches type filter")
             typeFilterList.append(object)
 
-
+    else:
+        for object in nameFilterList:
+            print("Checking object...", object.name)
+            if object.type == typeFilter:
+                print("Object matches type filter")
+                typeFilterList.append(object)
 
     for finalItem in typeFilterList:
         print("Processing shading....", finalItem.name)
@@ -101,5 +122,5 @@ def Update_VisibilityCategory(self, context):
     #Restore edit state
     if mode == 'EDIT_MESH':
         mode = 'EDIT'
-        
+
     bpy.ops.object.mode_set(mode=mode)
