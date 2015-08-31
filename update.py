@@ -1,19 +1,26 @@
 import bpy, bmesh, time
 from math import *
 
-from .definitions import GenerateObjectShading, CheckSuffix
+from .definitions import FocusObject, SelectObject, GenerateObjectShading, CheckSuffix
 
 def Update_VisibilityCategory(self, context):
-
-    #Preserve scene selection
-
-
-    #Preserve edit state
-    
 
     scn = context.scene
     user_preferences = context.user_preferences
     addon_prefs = user_preferences.addons["Blinkey"].preferences
+
+    # Keep a record of the selected and active objects to restore later
+    active = None
+    selected = []
+
+    for sel in context.selected_objects:
+        if sel.name != context.active_object.name:
+            selected.append(sel)
+    active = context.active_object
+
+    #Preserve edit state
+    mode = bpy.context.mode
+    bpy.ops.object.mode_set(mode='OBJECT')
 
     categoryName = self.name
     shading = self.visibility
@@ -83,3 +90,16 @@ def Update_VisibilityCategory(self, context):
     for finalItem in typeFilterList:
         print("Processing shading....", finalItem.name)
         GenerateObjectShading(finalItem, shading)
+
+    # Re-select the objects previously selected
+    if active is not None:
+        FocusObject(active)
+
+    for sel in selected:
+        SelectObject(sel)
+
+    #Restore edit state
+    if mode == 'EDIT_MESH':
+        mode = 'EDIT'
+        
+    bpy.ops.object.mode_set(mode=mode)
