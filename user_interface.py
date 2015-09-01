@@ -43,7 +43,13 @@ class UI_Visibility_List_3DView(bpy.types.UIList):
         if self.layout_type in {'DEFAULT', 'COMPACT'}:
 
             layout.prop(item, "name", text="", emboss=False)
-            layout.prop(item, "visibility", text="", icon=tempName)
+            layout.prop(item, "visibility", text="", icon=tempName, icon_only=True)
+
+            if item.selectable is True:
+                layout.prop(item, "selectable", text="", icon='RESTRICT_SELECT_OFF', emboss=False)
+
+            else:
+                layout.prop(item, "selectable", text="", icon='RESTRICT_SELECT_ON', emboss=False)
             layout.separator()
 
         elif self.layout_type in {'GRID'}:

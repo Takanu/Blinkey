@@ -102,6 +102,11 @@ def ShadeHide(target):
     ShadeNormal(target)
     target.hide = True
 
+def ShadeHide(target):
+    #print("Hiding Object")
+    ShadeNormal(target)
+    target.hide = True
+
 def CheckSuffix(string, suffix):
 
     strLength = len(string)

@@ -39,7 +39,7 @@ from . import operators
 from . import update
 from bpy.props import IntProperty, BoolProperty, StringProperty, PointerProperty, CollectionProperty, EnumProperty
 from bpy.types import AddonPreferences, PropertyGroup
-from .update import Update_VisibilityCategory
+from .update import Update_VisibilityCategory, Update_Selectable
 
 print("End of import")
 
@@ -95,6 +95,13 @@ class BL_VisibilityCategory(PropertyGroup):
             ('12', 'Speaker', 'Applies to speaker object types only.')
             ),
         default='1'
+    )
+
+    selectable = BoolProperty(
+        name="Selectable",
+        description="Toggles whether the objects in this filter can be selected.",
+        default=True,
+        update=Update_Selectable
     )
 
 class BL_VisibilityPreset(PropertyGroup):
